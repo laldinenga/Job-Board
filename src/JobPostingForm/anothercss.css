@@ -1,0 +1,39 @@
+/* App.css */
+
+/* Basic styles for the App container */
+.App {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  /* Style for the profile buttons */
+  .profile-btn {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 10px 20px; /* Add padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Align buttons inline */
+    font-size: 16px; /* Set font size */
+    margin: 10px; /* Add margin around buttons */
+    cursor: pointer; /* Show pointer cursor on hover */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+  
+  /* Hover effect for buttons */
+  .profile-btn:hover {
+    background-color: #45a049; /* Darker green */
+  }
+  
+  /* Style for the profile-card container */
+  .profile-card {
+    margin-top: 20px; /* Add margin on top */
+    padding: 20px; /* Add padding */
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light grey background */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  }
+  

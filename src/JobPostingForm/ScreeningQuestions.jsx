@@ -1,6 +1,17 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import React, { useState } from 'react';
 
 export default function ScreeningPage() {
+  const [backGroundCheck, setBackGroundCheck] = useState(true);
+  const [certifications, setCertifications] = useState(true);
+  const [driverLicense, setDriverLicense] = useState(true);
+  const [drugTest, setDrugTest] = useState(true);
+  const [education, setEducation] = useState(true);
+  const [expertiseWithSkills, setExpertiseWithSkills] = useState(true);
+  const [hybridWork, setHybridWork] = useState(true);
+  const [industryExperience, setIndustryExperience] = useState(true);
+  const [language, setLanguage] = useState(true);  
+  const [onSiteWork, setOnSiteWork] = useState(true);  
   return (
     <form>
       <div className="space-y-8">
@@ -42,7 +53,7 @@ export default function ScreeningPage() {
               </label>
               <div className="mt-2">
                 <input
-                  id="last-name"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                  id="last-name"
                   name="last-name"
                   type="text"
                   autoComplete="family-name"
@@ -59,22 +70,103 @@ export default function ScreeningPage() {
       </div>
       <div>
         Render the questions here
+        {backGroundCheck && (
+          <div>
+            <p>Background Check</p>
+          </div>
+        )}
+        {certifications && (
+          <div>
+            <p>checkCertifications</p>
+          </div>
+        )}
+        {driverLicense && (
+          <div>
+            <p>Driver License</p>
+          </div>
+        )}
+        {drugTest && (
+          <div>
+            <p>Drug Test</p>
+          </div>
+        )}
+        {education && (
+          <div>
+            <p>Education</p>
+          </div>
+        )}
+        {expertiseWithSkills && (
+          <div>
+            <p>Expertise With Skills</p>
+          </div>
+        )}
+        {hybridWork && (
+          <div>
+            <p>Hybrid Work</p>
+          </div>
+        )}
+        {industryExperience && (
+          <div>
+            <p>Industry Experience</p>
+          </div>
+        )}
+        {language && (
+          <div>
+            <p>Language</p>
+          </div>
+        )}
+        {onSiteWork && (
+          <div>
+            <p>On-Site Work</p>
+          </div>
+        )}
       </div>
       <div>
-          <p className="text-left">Add screening questions:</p>
-          <div className="flex flex-col ">
-            <button className="bg-indigo-600">Background Check</button>
-            <button>Certification</button>
-            <button>Driver's license</button>
-            <button>Drug Test</button>
-            <button>Education</button>
-            <button>Expertise with Skill</button>
-            <button>Hybrid Work</button>
-            <button>Industry Experience</button>
-            <button>Language</button>
-            <button>Location</button>
-            <button>Onsite Work</button>
-          </div>
+        <p className="text-left">Add screening questions:</p>
+        <div className="flex-wrap gap-4 p-2 rounded-lg place-items-start">
+          {/* Backgroundchek */}
+          {backGroundCheck && <button onClick={() => setBackGroundCheck(false)} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Background Check</button>}
+
+          {!backGroundCheck && <button onClick={() => setBackGroundCheck(true)} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Background Check</button>}
+         {/* Certification check */}
+          {certifications && <button onClick={() => setCertifications(false)} className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Certifications</button>}
+
+          {!certifications && <button onClick={() => setCertifications(true)} className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Certifications</button>}
+          {/* Driverlicense check */}
+          {driverLicense && <button onClick={() => setDriverLicense(false)} className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Driver License</button>}
+
+          {!driverLicense && <button onClick={() => setDriverLicense(true)} className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Driver License</button>}
+          
+          {drugTest && <button onClick={() => setDrugTest(false)} className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Drug Test</button>}
+
+          {!drugTest && <button onClick={() => setDrugTest(true)} className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Drug Test</button>}
+          
+          {education && <button onClick={() => setEducation(false)} className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Education</button>}
+
+          {!education && <button onClick={() => setEducation(true)} className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Education</button>}
+
+          {expertiseWithSkills && <button onClick={() => setExpertiseWithSkills(false)} className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Expertise With Skills</button>}
+
+          {!expertiseWithSkills && <button onClick={() => setExpertiseWithSkills(true)} className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Expertise With Skills</button>}
+          
+          {hybridWork && <button onClick={() => setHybridWork(false)} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hybrid Work</button>}
+
+          {!hybridWork && <button onClick={() => setHybridWork(true)} className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Hybrid Work</button>}
+
+          {industryExperience && <button onClick={() => setIndustryExperience(false)} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Industry Experience</button>}
+
+          {!industryExperience && <button onClick={() => setIndustryExperience(true)} className="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Industry Experience</button>}
+
+
+          {language && <button onClick={() => setLanguage(false)} className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Language</button>}
+
+          {!language && <button onClick={() => setLanguage(true)} className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Language</button>}
+
+          {onSiteWork && <button onClick={() => setOnSiteWork(false)} className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">On-Site Work</button>}
+
+          {!onSiteWork && <button onClick={() => setOnSiteWork(true)} className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">On-Site Work</button>}
+        
+        </div>
       </div>
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <button
