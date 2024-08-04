@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function JobPosting() {
   return (
     <div className="bg-grey-100 shadow-lg">
@@ -121,12 +123,13 @@ export default function JobPosting() {
               >
                 Write with AI
               </button>
-              <button
-                type="submit"
+              <Link to={"/editor"}
+                type="button"
                 className="flex w-full mt-4 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                
               >
                 Write on my own
-              </button>
+              </Link>
             </div>
           </form>
 
