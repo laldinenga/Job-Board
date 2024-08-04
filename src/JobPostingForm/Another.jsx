@@ -32,6 +32,9 @@ export default function ScreeningPage() {
 
   return (
     <form>
+      <div className="font-medium text-xl text-start border-b-2 mb-10">
+      2 of 2: Receive qualified applicants
+      </div>
       <div className="bg-custom-gray border border-black">
         <div className="space-y-8 m-4">
           <div className="border-b border-l-violet-950 pb-12">

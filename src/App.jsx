@@ -3,8 +3,6 @@ import './App.css';
 import JobPosting from './JobPostingForm/JobPosting.jsx';
 import ScreeningQuestions from './JobPostingForm/ScreeningQuestions.jsx';
 import Textfield from './JobPostingForm/Textfield.jsx';
-import Test from './JobPostingForm/Test.jsx';
-import Textshowing from './JobPostingForm/Textshowing.jsx';
 import Another from './JobPostingForm/Another.jsx';
 import Maineditor from './JobPostingForm/Maineditor.jsx';
 
@@ -18,8 +16,6 @@ function App() {
           <Route exact path="/jobposting" element={<JobPosting />}></Route>
           <Route exact path="/screening" element={<ScreeningQuestions />}></Route>
           <Route exact path="/textfield" element={<Textfield />}></Route>
-          <Route exact path="/test" element={<Test/>}></Route>
-          <Route exact path="/test1" element={<Textshowing />}></Route>
           <Route exact path="/editor" element={<Maineditor />}></Route>
         </Routes>
       </Router>

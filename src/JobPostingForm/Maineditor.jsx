@@ -15,6 +15,9 @@ const App = () => {
   return (
     
     <div>
+      <div className="font-medium text-2xl text-start border-b-2 mb-10">
+      1 of 2: Tell us about the role
+      </div>
       <div className="py-2 px-2">
         <label
           htmlFor="jobDescription"
