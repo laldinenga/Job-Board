@@ -5,7 +5,7 @@ import ScreeningQuestions from './JobPostingForm/ScreeningQuestions.jsx';
 import Textfield from './JobPostingForm/Textfield.jsx';
 import Another from './JobPostingForm/Another.jsx';
 import Maineditor from './JobPostingForm/Maineditor.jsx';
-import Testpage from './JobPostingForm/Testpage.jsx';
+import Trial from './JobPostingForm/Trial.jsx';
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
           <Route exact path="/screening" element={<ScreeningQuestions />}></Route>
           <Route exact path="/textfield" element={<Textfield />}></Route>
           <Route exact path="/editor" element={<Maineditor />}></Route>
-          <Route exact path="/test" element={<Testpage />}></Route>
+          <Route exact path="/trial" element={<Trial />}></Route>
         </Routes>
       </Router>
     </main>
