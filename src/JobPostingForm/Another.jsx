@@ -24,7 +24,7 @@ const questions = [
 export default function ScreeningPage() {
   const [states, setStates] = useState(
     Object.fromEntries(questions.map((q) => [q.key, false])),
-    Object.fromEntries(questions.map((q) => [q.key, {clicked: false}]))
+    // Object.fromEntries(questions.map((q) => [q.key, {clicked: false}]))
   );
 
   const toggleState = (key) => {
@@ -49,8 +49,7 @@ export default function ScreeningPage() {
               <div className="sm:col-span-3">
                 <label
                   htmlFor="receiving-mode"
-                  className="flex text-sm font-medium leading-6 text-gray-900"
-                >
+                  className="flex text-sm font-medium leading-6 text-gray-900">
                   Application Collection
                 </label>
                 <div className="mt-2">
@@ -95,7 +94,7 @@ export default function ScreeningPage() {
           </div>
 
           <div>
-            {questions.map(({ key, label, head }) =>
+            {questions.map(({ key, head }) =>
               states[key] ? (
                 <div className="bg-stone-300 p-1 rounded-xl mt-5" key={key}>
                   <div className="flex justify-between ml-2 mr-3">
@@ -103,7 +102,12 @@ export default function ScreeningPage() {
                       {`${head}?`}
                     </h3>
                     <button
-                      onClick={() => setStates(false)}
+                      onClick={() =>
+                        setStates(prev => ({
+                          ...prev,
+                          [key]: false
+                        }))
+                      }
                       className="hover:bg-slate-200 rounded-full"
                     >
                       <svg
@@ -147,8 +151,10 @@ export default function ScreeningPage() {
                   key={key}
                   onClick={() => toggleState(key)}
                   disabled={states[key]?.clicked} 
-                  className={`text-black bg-transparent hover:bg-slate-200 font-semibold py-1 px-2 border border-black hover:border-gray-300 rounded-full ${ states[key]?.clicked ? "opacity-50 cursor-not-allowed" : ""}`}
+                  className={"text-black bg-transparent hover:bg-slate-200 font-semibold py-1 px-2 border border-black hover:border-gray-300 rounded-full "}
+                  // ${ states[key]?.clicked ? "opacity-50 cursor-not-allowed" : ""}
                 >
+                
                   {label}
                 </button>
               ))}
