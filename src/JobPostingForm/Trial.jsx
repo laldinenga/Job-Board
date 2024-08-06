@@ -130,14 +130,14 @@ export default function ScreeningPage() {
                   Application Collection
                 </label>
 
-                <div className="sm:col-span-3">
+                <div className="mt-2 sm:col-span-3">
                   <select
                     id="receiving-mode"
                     name="receiving-mode"
                     autoComplete="receiving-mode"
                     value={selectedOption}
                     onChange={handleChange}
-                    className="flex w-full rounded-md p-1 border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    className="flex w-full rounded-md p-2 border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                   >
                     <option value="email">Email</option>
                     <option value="externalSite">External Website</option>
@@ -149,7 +149,7 @@ export default function ScreeningPage() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium leading-6 text-gray-900"
+                      className="text-sm font-medium leading-6 text-gray-900"
                     >
                       Email Address
                     </label>
@@ -160,7 +160,7 @@ export default function ScreeningPage() {
                         type="email"
                         placeholder="example@gmail.com"
                         autoComplete="Email"
-                        className="block w-full items-end py-1.5 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className="w-full items-end py-2 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
@@ -180,13 +180,13 @@ export default function ScreeningPage() {
                         type="website"
                         placeholder="www.example.com"
                         autoComplete="website"
-                        className="block w-full items-end py-1.5 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        className="w-full items-end py-2 rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       />
                     </div>
                   </div>
                 )}
               </div>
-              <div className="sm:col-span-6">
+              <div className="mt-2 sm:col-span-6">
                 {selectedOption === "email" && (
                   <div>
                     <div className="text-left">

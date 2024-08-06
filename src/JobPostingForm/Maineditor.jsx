@@ -30,14 +30,16 @@ const App = () => {
         <Editor
           ref={quillRef}
           defaultValue={new Delta()
-            .insert("Type Your Job Description Here")
-            .insert("\n", { header: 1 })
-            .insert("Implement")
-            .insert(" ")
-            .insert("AI", { bold: true })
-            .insert(" ")
-            .insert("LATER", { underline: true })
-            .insert("\n")}
+            // .insert("Type Your Job Description Here")
+            // .insert("\n", { header: 1 })
+            // .insert("Implement")
+            // .insert(" ")
+            // .insert("AI", { bold: true })
+            // .insert(" ")
+            // .insert("LATER", { underline: true })
+            // .insert("\n")}
+            ${content}
+          }
           onSelectionChange={setRange}
           onTextChange={setLastChange}
         />
