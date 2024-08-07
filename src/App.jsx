@@ -1,11 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import './App.css';
 import JobPosting from './JobPostingForm/JobPosting.jsx';
-import ScreeningQuestions from './JobPostingForm/ScreeningQuestions.jsx';
-import Textfield from './JobPostingForm/Textfield.jsx';
-import Another from './JobPostingForm/Another.jsx';
-import Maineditor from './JobPostingForm/Maineditor.jsx';
-import Trial from './JobPostingForm/Trial.jsx';
+import Editor from './JobPostingForm/Editor.jsx';
+import QuestionPage from './JobPostingForm/QuestionPage.jsx';
 
 
 function App() {
@@ -14,12 +11,9 @@ function App() {
     <main>
       <Router>
         <Routes>
-          <Route exact path="/another" element={<Another />}></Route>
           <Route exact path="/jobposting" element={<JobPosting />}></Route>
-          <Route exact path="/screening" element={<ScreeningQuestions />}></Route>
-          <Route exact path="/textfield" element={<Textfield />}></Route>
-          <Route exact path="/editor" element={<Maineditor />}></Route>
-          <Route exact path="/trial" element={<Trial />}></Route>
+          <Route exact path="/editor" element={<Editor />}></Route>
+          <Route exact path="/questionpage" element={<QuestionPage />}></Route>
         </Routes>
       </Router>
     </main>
