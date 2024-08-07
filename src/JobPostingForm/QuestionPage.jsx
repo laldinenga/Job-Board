@@ -95,9 +95,19 @@ export default function ScreeningPage() {
     // Object.fromEntries(questions.map((q) => [q.key, {clicked: false}]))
   );
 
+  const [clickOrder, setClickOrder] = useState([]);
+
   const toggleState = (key) => {
     setStates((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
+  
+    if (!clickOrder.includes(key)) {
+    setClickOrder((prevOrder) => [...prevOrder, key]);
+  }
+};
+
+const sortedQuestions = questions
+.filter(({ key }) => clickOrder.includes(key)) // Filter questions based on clicked keys
+.sort((a, b) => clickOrder.indexOf(a.key) - clickOrder.indexOf(b.key));
 
   const [selectedOption, setSelectedOption] = useState("email");
 
@@ -198,7 +208,7 @@ export default function ScreeningPage() {
                     </div>
 
                     <div>
-                      {questions.map(({ key, head }) =>
+                      {sortedQuestions.map(({ key, head }) =>
                         states[key] ? (
                           <div
                             className="bg-stone-300 p-1 rounded-xl mt-5"
