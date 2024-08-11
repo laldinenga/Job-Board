@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactQuill from "react-quill";
 import { Link } from "react-router-dom";
+import axios from 'axios'; 
 import "react-quill/dist/quill.snow.css";
 
 const modules = {
@@ -20,17 +21,53 @@ const modules = {
 
 const Editor = () => {
   const [value, setValue] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const prompts = {
+    prompt1: "What date is today?",
+    prompt2: "Tell me a joke.",
+    // Add more prompts as needed
+  };
+
+  const handlePromptClick = async (prompt) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.post('http://localhost:3000/openai/query', {
+        prompt
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      setValue(response.data); // Update ReactQuill value with the API response
+    } catch (err) {
+      setError('Error fetching data');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="">
       <div className="font-medium text-2xl text-start border-b-2 mb-10">
         1 of 2: Tell us about the role
       </div>
-      <div className="py-1 px-2">
-        <h5 className="block text-lg font-bold text-left"
-        >
+      <div className="flex justify-between py-1 px-2 ">
+        <h5 className="block text-lg font-bold text-left">
           Description*
         </h5>
+        <a 
+          className="border-2 hover:bg-blue-100 rounded-lg font-semibold" 
+          href="" 
+          type="button" 
+          onClick={() => handlePromptClick(prompts.prompt1)}
+          disabled={loading}
+        >
+          Generate Description with AI *
+        </a>
       </div>
       <div className=" bg-slate-50 h-96 border-2 ">
         <div className="h-full">
@@ -43,11 +80,9 @@ const Editor = () => {
               className="h-full w-full"
               modules={modules}
             />
+            {loading && <p>Loading...</p>}
+            {error && <p className="text-red-500">{error}</p>}
           </div>
-          {/* <div
-            className="preview"
-            dangerouslySetInnerHTML={{ __html: value }}
-          /> */}
         </div>
         <div className="mt-14 flex items-center justify-end gap-x-6">
           <Link

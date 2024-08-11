@@ -89,6 +89,8 @@ const questions = [
   },
 ];
 
+const selectedKeys = ["certifications", "education",  "expertiseWithSkills", "industryExperience", "language", "workExperience" ];  //To render additional input field inside the body
+
 export default function ScreeningPage() {
   const [states, setStates] = useState(
     Object.fromEntries(questions.map((q) => [q.key, false]))
@@ -117,7 +119,7 @@ const sortedQuestions = questions
 
   return (
     <form>
-      <div className="bg-custom-gray border border-black">
+      <div className="bg-custom-gray border border-black ">
         <div className="space-y-8 m-4">
           <div className="font-medium text-xl text-start border-b-2 mb-10">
             2 of 2: Receive qualified applicants
@@ -247,6 +249,17 @@ const sortedQuestions = questions
                                 <p>Ideal Answer:</p>
                                 <p>Yes</p>
                               </div>
+                              {key === "certifications" &&
+                                (
+                                  <div>
+                                    <label htmlFor="certs">License/Certfications</label>
+                                    <div className="mb-2">
+                                      <input className="rounded-md" id="certs" type="text" />
+                                    </div>
+                                  </div>
+                                  
+                                )
+                              }
                               <div className="p-2">
                                 <input
                                   type="checkbox"

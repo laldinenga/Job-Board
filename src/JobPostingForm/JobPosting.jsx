@@ -117,18 +117,18 @@ export default function JobPosting() {
               </div>
             </div>
             <div>
-              <button
+              {/* <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Write with AI
-              </button>
-              <Link to={"/editor"}
+              </button> */}
+              <Link to={"/aieditor"}
                 type="button"
                 className="flex w-full mt-4 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 
               >
-                Write on my own
+                Write Job Decription
               </Link>
             </div>
           </form>
