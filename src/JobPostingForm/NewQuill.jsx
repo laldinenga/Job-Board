@@ -1,110 +1,10 @@
-// import React, { useRef, useState } from "react";
-// import Editor from "./Editorcopy";
-// import axios from "axios"; // Import axios
-// import { Link } from "react-router-dom";
-// import "quill/dist/quill.snow.css";
-// import { Delta } from "quill/core";
-
-// const App = () => {
-//   const [value, setValue] = useState("Hello");
-//   const [range, setRange] = useState();
-//   const [lastChange, setLastChange] = useState();
-//   const [loading, setLoading] = useState(false);
-//   const [error, setError] = useState(null);
-
-//   // Use a ref to access the quill instance directly
-//   const quillRef = useRef();
-
-//   const prompts = {
-//     prompt1: "What date is today?",
-//     prompt2: "Tell me a joke.",
-//     // Add more prompts as needed
-//   };
-
-//   const handlePromptClick = async (prompt) => {
-//     setLoading(true);
-//     setError(null);
-//     try {
-//         const response = await axios.post('http://localhost:3000/openai/query', {
-//           prompt
-//         }, {
-//           headers: {
-//             'Content-Type': 'application/json',
-//           }
-//         });
-  
-//         setValue(response.data); // Update ReactQuill value with the API response
-//       } catch (err) {
-//         setError('Error fetching data');
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//   return (
-//     <div>
-//       <div className="font-medium text-2xl text-start border-b-2 mb-10">
-//         1 of 2: Tell us about the role
-//       </div>
-//       <div className="flex justify-between py-1 px-2">
-//         <h5 className="block text-lg font-bold text-left"
-//         >
-//           Job Description*
-//         </h5>
-//         <a className="border-2 hover:bg-blue-100 rounded-lg font-semibold" href="" type="button" onClick={() => handlePromptClick(prompts.prompt1)}
-//           disabled={loading}>
-//             Generate Description with AI *
-//         </a>
-//       </div>
-//       <div className="bg-white">
-//         <Editor
-//           ref={quillRef}
-//           value={value}
-//           onChange={setValue}
-//           onSelectionChange={setRange}
-//           onTextChange={setLastChange}
-//         />
-//       </div>
-//       {/* <div className="p-2.5 text-right">
-//         {quillRef.current?.getLength() - 1}
-//       </div> */}
-//       <div className="mt-6 flex items-center justify-end gap-x-6">
-//         <Link to={"/jobposting"}
-//           type="button"
-//           className="text-sm bg-slate-200 rounded-lg px-3 py-2 font-semibold leading-6 text-gray-900"
-//         >
-//           Back
-//         </Link>
-//         <Link to={"/another"}
-//           type="button"
-//           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-//         >
-//           Next
-//         </Link>
-//         {/* <button
-//           onClick={fetchPrompt}
-//           disabled={loading}
-//           className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500"
-//         >
-//           {loading ? "Loading..." : "Fetch New Prompt"}
-//         </button> */}
-//         {error && <p className="text-red-500">{error}</p>}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default App;
-
-
 import React, { useRef, useState, useEffect } from "react";
 import Editor from "./Editorcopy";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Quill from "quill";
 
-const Delta = Quill.import('delta');
-import "quill/dist/quill.snow.css";
+const Delta = Quill.import("delta");
 
 const App = () => {
   const [value, setValue] = useState("Hello");
@@ -138,28 +38,26 @@ const App = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:3000/openai/query',
+        "http://localhost:3000/openai/query",
         { prompt },
         {
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-          signal: controller.signal // Pass the signal to axios
+          signal: controller.signal, // Pass the signal to axios
         }
       );
       quillRef.current = response.data;
 
-    //   setValue(response.data); // Update ReactQuill value with the API response
+      //   setValue(response.data); // Update ReactQuill value with the API response
 
       // const jsonResponse = response.data;
       // const htmlResponse = `<p>${jsonResponse}</p>`;
       // setValue(htmlResponse);
       // console.log(htmlResponse);
-      
-
     } catch (err) {
-      if (err.name !== 'CanceledError') {
-        setError('Error fetching data');
+      if (err.name !== "CanceledError") {
+        setError("Error fetching data");
       }
     } finally {
       setLoading(false);
@@ -181,9 +79,7 @@ const App = () => {
         1 of 2: Tell us about the role
       </div>
       <div className="flex justify-between py-1 px-2">
-        <h5 className="block text-lg font-bold text-left">
-          Job Description*
-        </h5>
+        <h5 className="block text-lg font-bold text-left">Job Description*</h5>
         <a
           className="border-2 hover:bg-blue-100 rounded-lg font-semibold"
           href="#"
@@ -194,18 +90,18 @@ const App = () => {
           Generate Description with AI *
         </a>
       </div>
-      <div className="bg-slate-100 h-96" >
-        <Editor
-        className="h-full"
-          ref={quillRef}
-          defaultValue={new Delta()
-            .insert(prompts.prompt1)}
-          // value={value}
-          // onChange={setValue}
-          onSelectionChange={setRange}
-          onTextChange={setLastChange}
-        />
-      </div>
+        <div>
+          <Editor
+            ref={quillRef}
+            defaultValue={new Delta().insert(prompts.prompt1)}
+            style={{ height: "100%" }}
+
+            // value={value}
+            onChange={Quill.updateContents(new Delta().insert("Hi"))}
+            onSelectionChange={setRange}
+            onTextChange={setLastChange}
+          />
+        </div>
       {/* <div className="p-2.5 text-right">
         {quillRef.current?.getLength() - 1}
       </div> */}

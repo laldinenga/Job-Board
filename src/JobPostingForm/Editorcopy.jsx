@@ -5,7 +5,7 @@ import Quill from 'quill';
 
 // Editor is an uncontrolled React component
 const Editor = forwardRef(
-  ({ readOnly, defaultValue, onTextChange, onSelectionChange }, ref) => {
+  ({ defaultValue, onTextChange, onSelectionChange }, ref) => {
     const containerRef = useRef(null);
     const defaultValueRef = useRef(defaultValue);
     const onTextChangeRef = useRef(onTextChange);
@@ -16,15 +16,16 @@ const Editor = forwardRef(
       onSelectionChangeRef.current = onSelectionChange;
     });
 
-    useEffect(() => {
-      ref.current?.enable(!readOnly);
-    }, [ref, readOnly]);
 
     useEffect(() => {
       const container = containerRef.current;
       const editorContainer = container.appendChild(
         container.ownerDocument.createElement('div'),
       );
+
+       // Apply the height directly to the editor container
+       editorContainer.style.height = '24rem'; // Set the desired height
+
       const quill = new Quill(editorContainer, {
         theme: 'snow',
       });

@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 import ReactQuill from "react-quill";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import "react-quill/dist/quill.snow.css";
+
 
 const modules = {
   toolbar: [
@@ -23,8 +24,6 @@ const Editor = () => {
   const [value, setValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-
 
   const prompts = {
     prompt1: "What date is today?",
@@ -49,28 +48,34 @@ const Editor = () => {
       }
 
       const data = await response.json();
+      console.log('Api response', data);
       setValue(data); // Update ReactQuill value with the API response
+
     } catch (err) {
-      setError('Error fetching data');
+      console.error('Fetch error', err);
+      
+      setError(`Error fetching data, ${err.message}`);
     } finally {
       setLoading(false);
     }
   };
 
-
+ 
   return (
     <div className="">
       <div className="font-medium text-2xl text-start border-b-2 mb-10">
         1 of 2: Tell us about the role
       </div>
       <div className="flex justify-between py-1 px-2 ">
-        <h5 className="block text-lg font-bold text-left"
+        <h5 className="block text-lg font-bold text-left">Description*</h5>
+        <a
+          className="border-2 hover:bg-blue-100 rounded-lg font-semibold"
+          href=""
+          type="button"
+          onClick={() => handlePromptClick(prompts.prompt1)}
+          disabled={loading}
         >
-          Description*
-        </h5>
-        <a className="border-2 hover:bg-blue-100 rounded-lg font-semibold" href="" type="button" onClick={() => handlePromptClick(prompts.prompt1)}
-          disabled={loading}>
-            Generate Description with AI *
+          Generate Description with AI *
         </a>
       </div>
       <div className=" bg-slate-50 h-96 border-2 ">

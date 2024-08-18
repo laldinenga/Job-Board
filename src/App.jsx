@@ -7,6 +7,7 @@ import NewEditorAi from './JobPostingForm/NewEditorAi.jsx';
 import NewApi from './JobPostingForm/NewApi.jsx';
 import NewQuill from './JobPostingForm/NewQuill.jsx';
 import TestPage from './JobPostingForm/TestPage.jsx';
+import Tiptap from './JobPostingForm/Tiptap.jsx';
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/newapi" element={<NewApi />}></Route>
           <Route exact path="/newquill" element={<NewQuill />}></Route>
           <Route exact path="/testpage" element={<TestPage />}></Route>
+          <Route exact path="/tiptap" element={<Tiptap />}></Route>
         </Routes>
       </Router>
     </main>

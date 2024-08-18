@@ -5,38 +5,90 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.ql-container {
+  height: 100% !important;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.ProsMirror{
+  padding: 10px;
+  border-top: 1px solid grey;
+  background: white;
+  border-radius: 0 0 5px 5px;
+  min-height: 100px;
+
+} 
+.ProsMirror .tiptap {
+  :first-child {
+    margin-top: 0;
   }
-  to {
-    transform: rotate(360deg);
+
+  /* List styles */
+  .ProsMirror ul, 
+  .ProsMirror ol {
+    padding: 0 1rem;
+    margin: 1.25rem 1rem 1.25rem 0.4rem;
+    
+    .ProsMirror li p {
+      margin-top: 0.25em;
+      margin-bottom: 0.25em;
+    }
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  /* Heading styles */
+  .ProsMirror h1, 
+  .ProsMirror h2, 
+  .ProsMirror h3, 
+  .ProsMirror h4, 
+  .ProsMirror h5, 
+  .ProsMirror h6 {
+    line-height: 1.1;
+    margin-top: 2.5rem;
+    text-wrap: pretty;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .ProsMirror h1, 
+  .ProsMirror h2 {
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+  }
 
-.read-the-docs {
-  color: #888;
+  .ProsMirror h1 { 
+    font-size: 1.4rem; 
+  }
+
+  .ProsMirror h2 { 
+    font-size: 1.2rem; 
+  }
+
+  .ProsMirror h3 { 
+    font-size: 1.1rem; 
+  }
+
+  .ProsMirror h4, 
+  .ProsMirror h5, 
+  .ProsMirror h6 { 
+    font-size: 1rem; 
+  }
+
+  /* Code and preformatted text styles */
+  .ProsMirror code {
+    background-color: var(--purple-light);
+    border-radius: 0.4rem;
+    color: var(--black);
+    font-size: 0.85rem;
+    padding: 0.25em 0.3em;
+  }
+  
+
+  .ProsMirror blockquote {
+    border-left: 3px solid var(--gray-3);
+    margin: 1.5rem 0;
+    padding-left: 1rem;
+  }
+
+  .ProsMirror hr {
+    border: none;
+    border-top: 1px solid var(--gray-2);
+    margin: 2rem 0;
+  }
 }
