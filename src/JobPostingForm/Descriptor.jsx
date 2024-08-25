@@ -2,14 +2,20 @@ import React, { useRef, useState, useEffect } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css'; // Import Quill styles
 import axios from 'axios'; // Import Axios for API requests
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-const prompt = "Write Job Description for Java Developer?"; // Define the prompt
 
 const QuillEditor = () => {
     const quillContainerRef = useRef(null);
     const quillInstanceRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
+
+    const location = useLocation();
+    const { formData } = location.state || {};
+    
+    const prompt = ` write ${formData?.jobtitle} job desription for the ${formData?.company} 
+    with workplace type ${formData?.workplaceType}, job location ${formData?.jobLocation}
+    and a job type ${formData?.jobType}, key responsibilities, skill and experience and what we can offer`;
 
     useEffect(() => {
         if (quillContainerRef.current && !quillInstanceRef.current) {

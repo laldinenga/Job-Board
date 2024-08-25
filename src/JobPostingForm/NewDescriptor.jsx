@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css'; // Import Quill styles
 import axios from 'axios'; // Import Axios for API requests
-import { Link } from 'react-router-dom';
-import { useForm } from "./FormContext"; 
+import { Link, useLocation } from 'react-router-dom';
+
 
 
 const QuillEditors = () => {
@@ -11,34 +11,12 @@ const QuillEditors = () => {
     const quillInstanceRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const {formData} = useForm();
-
-    // const [formData, setFormData] = useState({ 
-    //     jobtitle: '', 
-    //     company: '', 
-    //     workplaceType: '', 
-    //     jobLocation: '', 
-    //     jobtype: ''  
-    // });
-
-
-    // useEffect(() => {
-    //     const handleFormData = (data) => {
-    //       setFormData(data);
-    //     };
-    //   }, []);
-
-    // const handleFormDataChange = (data) => {
-    //     setFormData(data);
-    // };
+    const location = useLocation();
+    const { formData } = location.state || {};
     
-
     const prompt = ` write ${formData.jobtitle} job desription for the ${formData.company} 
     with workplace type ${formData.workplaceType}, job location ${formData.jobLocation}
-    and a job type ${formData.jobtype} `; // Define the prompt
-
-    
-    console.log(prompt);
+    and a job type ${formData.jobType} `; // Define the prompt
     
     useEffect(() => {
         if (quillContainerRef.current && !quillInstanceRef.current) {
