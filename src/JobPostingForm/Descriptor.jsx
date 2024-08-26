@@ -5,7 +5,10 @@ import axios from 'axios'; // Import Axios for API requests
 import { Link, useLocation } from 'react-router-dom';
 
 
-const QuillEditor = () => {
+const QuillEditor = (onDataChange) => {
+
+    const [editorContent, setEditorContent] = useState('');
+
     const quillContainerRef = useRef(null);
     const quillInstanceRef = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +26,11 @@ const QuillEditor = () => {
             quillInstanceRef.current = new Quill(quillContainerRef.current, {
                 theme: 'snow'
             });
+
+            quillInstanceRef.current.on('text-change', () => {
+                // setEditorContent(quillInstanceRef.current.root.innerHTML);
+                setEditorContent(quillInstanceRef.current.getText());
+              });
         }
     }, []);
 
@@ -35,10 +43,10 @@ const QuillEditor = () => {
             // Replace with your API endpoint
             const response = await axios.post('http://localhost:3000/openai/query', { prompt }, { signal });
 
-            // Assuming the response data is in the Delta format
+           
             const jsonResponse = response.data;
 
-            // Convert JSON response to Delta format if needed
+            // Convert JSON response to Delta format 
             const delta = convertJsonToDelta(jsonResponse);
 
             if (quillInstanceRef.current) {
@@ -62,8 +70,7 @@ const QuillEditor = () => {
     };
 
     const convertJsonToDelta = (jsonResponse) => {
-        // Implement your conversion logic here
-        // For example, if the JSON response has a "text" field
+       
         return {
             ops: [
                 { insert: jsonResponse || 'No content' }
@@ -71,6 +78,13 @@ const QuillEditor = () => {
         };
     };
 
+    const sendData = () => {
+        onDataChange(editorContent);
+    }
+
+    console.log(editorContent);
+    
+    
     return (
         <div>
             <div className="font-medium text-2xl text-start border-b-2 mb-10">
@@ -88,11 +102,10 @@ const QuillEditor = () => {
                 </a>
             </div>
             <div>
-                <div ref={quillContainerRef} style={{ height: '400px', padding: '40px' }} >
-
-                </div>
-
+                <div ref={quillContainerRef} style={{ height: '400px', padding: '40px' }} />
             </div>
+
+
             <div className="mt-6 flex items-center justify-end gap-x-6">
                 <Link
                     to={"/jobposting"}
@@ -102,8 +115,9 @@ const QuillEditor = () => {
                     Back
                 </Link>
                 <Link
-                    to={"/questionpage"}
+                    to={"/display"}
                     type="button"
+                    onClick={sendData}
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                     Next

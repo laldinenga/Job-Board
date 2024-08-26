@@ -4,6 +4,7 @@ import JobPosting from './JobPostingForm/JobPosting.jsx';
 import QuestionPage from './JobPostingForm/QuestionPage.jsx';
 import QuillEditor from './JobPostingForm/Descriptor.jsx';
 
+
 function App() {
 
   return (
@@ -16,7 +17,7 @@ function App() {
           </Routes>
       </Router>
     </main>
-    
+   
   )
 }
 
