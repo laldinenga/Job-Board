@@ -12,7 +12,7 @@ const QuillEditor = () => {
 
     const location = useLocation();
     const { formData } = location.state || {};
-    
+
     const prompt = ` write ${formData?.jobtitle} job desription for the ${formData?.company} 
     with workplace type ${formData?.workplaceType}, job location ${formData?.jobLocation}
     and a job type ${formData?.jobType}, key responsibilities, skill and experience and what we can offer`;
@@ -37,9 +37,6 @@ const QuillEditor = () => {
 
             // Assuming the response data is in the Delta format
             const jsonResponse = response.data;
-
-            console.log(jsonResponse);
-
 
             // Convert JSON response to Delta format if needed
             const delta = convertJsonToDelta(jsonResponse);
@@ -87,31 +84,31 @@ const QuillEditor = () => {
                     type="button"
                     onClick={fetchContentFromAPI} disabled={isLoading}
                 >
-                     {isLoading ? 'Loading...' : 'Generate Description with AI *'}
+                    {isLoading ? 'Loading...' : 'Generate Description with AI *'}
                 </a>
             </div>
             <div>
-                {/* <button onClick={fetchContentFromAPI} disabled={isLoading}>
-                    {isLoading ? 'Loading...' : 'Fetch Content'}
-                </button> */}
-                <div ref={quillContainerRef} style={{ height: '400px', padding: '40px' }}></div>
+                <div ref={quillContainerRef} style={{ height: '400px', padding: '40px' }} >
+
+                </div>
+
             </div>
             <div className="mt-6 flex items-center justify-end gap-x-6">
-        <Link
-          to={"/jobposting"}
-          type="button"
-          className="text-sm bg-slate-200 rounded-lg px-3 py-2 font-semibold leading-6 text-gray-900"
-        >
-          Back
-        </Link>
-        <Link
-          to={"/questionpage"}
-          type="button"
-          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Next
-        </Link>
-      </div>
+                <Link
+                    to={"/jobposting"}
+                    type="button"
+                    className="text-sm bg-slate-200 rounded-lg px-3 py-2 font-semibold leading-6 text-gray-900"
+                >
+                    Back
+                </Link>
+                <Link
+                    to={"/questionpage"}
+                    type="button"
+                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                    Next
+                </Link>
+            </div>
         </div>
     );
 };

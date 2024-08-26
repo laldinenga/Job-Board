@@ -26,7 +26,7 @@ import { useNavigate } from 'react-router-dom';
       // Redirect or pass data to another component
       navigate('/descriptor', { state: { formData } });
     };
-
+ 
 
     return (
       <div className="bg-grey-100 shadow-lg">
