@@ -23,11 +23,13 @@ import { useNavigate } from 'react-router-dom';
   
     const handleSubmit = (e) => {
       e.preventDefault();
+      localStorage.clear();
+      localStorage.setItem("formData", JSON.stringify(formData));
+      alert("Data recorded!");
       // Redirect or pass data to another component
-      navigate('/descriptor', { state: { formData } });
+      navigate('/descriptor');
     };
- 
-
+    
     return (
       <div className="bg-grey-100 shadow-lg">
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-8 lg:px-8">
