@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const QuillEditor = () => {
 
-    const [editorContent, setEditorContent] = useState('');
+    const [JobDescription, setJobDescription] = useState('');
 
     const quillContainerRef = useRef(null);
     const quillInstanceRef = useRef(null);
@@ -17,9 +17,11 @@ const QuillEditor = () => {
 
     const formData = JSON.parse(localStorage.getItem("formData"));
 
-    const prompt = ` write ${formData.jobtitle} job desription for the ${formData.company} 
-    with workplace type ${formData.workplaceType}, job location ${formData.jobLocation}
-    and a job type ${formData.jobType}, key responsibilities, skill and experience and what we can offer`;
+    const prompt = ` write key responsibilities, skill and experience and what we can offer on ${formData.jobtitle}`;
+    
+    // const prompt = ` write ${formData.jobtitle} job desription for the ${formData.company} 
+    // with workplace type ${formData.workplaceType}, job location ${formData.jobLocation}
+    // and a job type ${formData.jobType}, key responsibilities, skill and experience and what we can offer`;
 
     useEffect(() => {
         if (quillContainerRef.current && !quillInstanceRef.current) {
@@ -29,8 +31,8 @@ const QuillEditor = () => {
             });
 
             quillInstanceRef.current.on('text-change', () => {
-                // setEditorContent(quillInstanceRef.current.root.innerHTML);
-                setEditorContent(quillInstanceRef.current.getText());
+                // setJobDescription(quillInstanceRef.current.root.innerHTML);
+                setJobDescription(quillInstanceRef.current.getText());
               });
         }
     }, []);
@@ -77,15 +79,23 @@ const QuillEditor = () => {
             ]
         };
     };
+    const allData = [formData.jobtitle, formData.company, formData.workplaceType, formData.jobLocation, formData.jobType, JobDescription];
+    console.log(allData);
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        localStorage.setItem("JobDescription", JSON.stringify(editorContent));
+     try{   
+        localStorage.setItem("JobDescription", JSON.stringify(JobDescription));
+        axios.post('http://localhost:3001/newjob/post-jobs', allData );
         alert("Data recorded!");
-        navigate('/display');
+        navigate('/display'); 
 
+    } catch (err) {
+        alert("Item already Exist");
+        return (err);
+      }
     }
-    
     return (
         <div>
             <div className="font-medium text-2xl text-start border-b-2 mb-10">
