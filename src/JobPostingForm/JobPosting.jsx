@@ -122,6 +122,7 @@ import { useNavigate } from 'react-router-dom';
                     id="jobLocation"
                     name="jobLocation"
                     type="jobLocation"
+                    placeholder='Suburb, City, State, PIN code, Country'
                     required
                     autoComplete="jobLocation"
                     value={formData.jobLocation}

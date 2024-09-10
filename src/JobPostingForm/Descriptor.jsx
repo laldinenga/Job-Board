@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const QuillEditor = () => {
 
-    const [JobDescription, setJobDescription] = useState('');
+    const [Jobdescription, setJobDescription] = useState({JobDescription: ''});
 
     const quillContainerRef = useRef(null);
     const quillInstanceRef = useRef(null);
@@ -32,7 +32,8 @@ const QuillEditor = () => {
 
             quillInstanceRef.current.on('text-change', () => {
                 // setJobDescription(quillInstanceRef.current.root.innerHTML);
-                setJobDescription(quillInstanceRef.current.getText());
+                
+                setJobDescription({JobDescription: quillInstanceRef.current.getText()});
               });
         }
     }, []);
@@ -79,15 +80,17 @@ const QuillEditor = () => {
             ]
         };
     };
-    const allData = [formData.jobtitle, formData.company, formData.workplaceType, formData.jobLocation, formData.jobType, JobDescription];
-    console.log(allData);
-    
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
      try{   
-        localStorage.setItem("JobDescription", JSON.stringify(JobDescription));
-        axios.post('http://localhost:3001/newjob/post-jobs', allData );
+        localStorage.setItem("Jobdescription", JSON.stringify(Jobdescription));
+    
+        const combinedObject = { ...formData, ...Jobdescription};
+        console.log(combinedObject);
+        
+        axios.post('http://localhost:3001/newjob/post-jobs', combinedObject);
         alert("Data recorded!");
         navigate('/display'); 
 
