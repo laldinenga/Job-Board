@@ -90,7 +90,7 @@ const QuillEditor = () => {
         const combinedObject = { ...formData, ...Jobdescription};
         console.log(combinedObject);
         
-        axios.post('http://localhost:3001/newjob/post-jobs', combinedObject);
+        axios.post('http://localhost:3000/newjob/post-jobs', combinedObject);
         alert("Data recorded!");
         navigate('/display'); 
 

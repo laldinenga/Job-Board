@@ -89,7 +89,7 @@ const questions = [
   },
 ];
 
-const selectedKeys = ["certifications", "education",  "expertiseWithSkills", "industryExperience", "language", "workExperience" ];  //To render additional input field inside the body
+const selectedKeys = ["certifications", "education", "expertiseWithSkills", "industryExperience", "language", "workExperience", "customQuestion"];  //To render additional input field inside the body
 
 export default function ScreeningPage() {
   const [states, setStates] = useState(
@@ -98,20 +98,40 @@ export default function ScreeningPage() {
   );
 
   const [clickOrder, setClickOrder] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("email");
+  const [options, setOptions] = useState([]);
 
   const toggleState = (key) => {
     setStates((prev) => ({ ...prev, [key]: !prev[key] }));
-  
+
     if (!clickOrder.includes(key)) {
-    setClickOrder((prevOrder) => [...prevOrder, key]);
+      setClickOrder((prevOrder) => [...prevOrder, key]);
+    }
+  };
+
+  const sortedQuestions = questions
+    .filter(({ key }) => clickOrder.includes(key)) // Filter questions based on clicked keys
+    .sort((a, b) => clickOrder.indexOf(a.key) - clickOrder.indexOf(b.key));
+
+  const RecordOptions = (event) => {
+    const { id, checked } = event.target;
+    const selectedOption = questions.find(option => option.key === id);
+    const headValue = selectedOption ? selectedOption.head : '';
+
+    if (checked) {
+      setOptions(prev => [...prev, headValue]);
+    } else {
+      setOptions(prev => prev.filter(option => option !== headValue));
+    }
+
+    // const getSelectedOptions = () => {
+    //   return options.filter(option => options.includes(option.key));
+    // };
+
   }
-};
 
-const sortedQuestions = questions
-.filter(({ key }) => clickOrder.includes(key)) // Filter questions based on clicked keys
-.sort((a, b) => clickOrder.indexOf(a.key) - clickOrder.indexOf(b.key));
 
-  const [selectedOption, setSelectedOption] = useState("email");
+  console.log(options);
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
@@ -257,7 +277,7 @@ const sortedQuestions = questions
                                       <input className="rounded-md" id="certs" type="text" />
                                     </div>
                                   </div>
-                                  
+
                                 )
                               }
                               <div className="p-2">
@@ -266,6 +286,7 @@ const sortedQuestions = questions
                                   id={key}
                                   name={key}
                                   value="Yes"
+                                  onChange={RecordOptions}
                                 />
                                 <label htmlFor={key}>
                                   {" "}
@@ -290,7 +311,7 @@ const sortedQuestions = questions
                             className={
                               "text-black bg-transparent hover:bg-slate-200 font-semibold py-1 px-2 border border-black hover:border-gray-300 rounded-full "
                             }
-                            // ${ states[key]?.clicked ? "opacity-50 cursor-not-allowed" : ""}
+                          // ${ states[key]?.clicked ? "opacity-50 cursor-not-allowed" : ""}
                           >
                             {label}
                           </button>
@@ -301,6 +322,10 @@ const sortedQuestions = questions
                 )}
               </div>
             </div>
+            {/* <div>
+            <h3>Selected Options:</h3>
+            <pre>{JSON.stringify(getSelectedOptions(), null, 2)}</pre>
+            </div> */}
             <div className="mt-6 flex items-center justify-end gap-x-6">
               <Link
                 to={"/descriptor"}

@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef  } from 'react';
+import { useNavigate, } from 'react-router-dom';
+import { useJsApiLoader } from "@react-google-maps/api";
+
+const libraries = ["places"];
 
   export default function JobPosting() {
 
@@ -10,6 +13,9 @@ import { useNavigate } from 'react-router-dom';
       jobLocation: '',
       jobType: ''
     });
+
+  const [autocomplete, setAutocomplete] = useState(null);
+  const inputRef = useRef(null);
   
     const navigate = useNavigate();
   
@@ -20,6 +26,24 @@ import { useNavigate } from 'react-router-dom';
         [name]: value
       });
     };
+
+     // Load Google Maps API
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey:import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+    libraries: libraries,
+  });
+
+    useEffect(() => {
+      if (isLoaded && inputRef.current) {
+        const autocompleteInstance = new google.maps.places.Autocomplete(inputRef.current);
+        autocompleteInstance.addListener("place_changed", () => {
+          const place = autocompleteInstance.getPlace();
+          console.log("Selected place:", place.formatted_address);
+        });
+        setAutocomplete(autocompleteInstance);
+      }
+    }, [isLoaded]);
   
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -122,6 +146,7 @@ import { useNavigate } from 'react-router-dom';
                     id="jobLocation"
                     name="jobLocation"
                     type="jobLocation"
+                    ref={inputRef}
                     placeholder='Suburb, City, State, PIN code, Country'
                     required
                     autoComplete="jobLocation"
